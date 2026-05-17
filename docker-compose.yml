@@ -1,17 +1,33 @@
 version: "3.8"
 
 services:
+  ryu:
+    build:
+      context: .
+      dockerfile: Dockerfile.ryu
+    container_name: sdn-ryu
+    ports:
+      - "6653:6653"
+
+  exporter:
+    build:
+      context: .
+      dockerfile: Dockerfile.exporter
+    container_name: sdn-exporter
+    ports:
+      - "8000:8000"
+
   prometheus:
     image: prom/prometheus
     container_name: sdn-prometheus
     ports:
       - "9090:9090"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
+    depends_on:
+      - exporter
 
   grafana:
     image: grafana/grafana

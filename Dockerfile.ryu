@@ -1,0 +1,18 @@
+FROM python:3.8-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    gcc \
+    python3-dev \
+    libffi-dev \
+    libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install ryu eventlet==0.30.2
+
+COPY self_healing_controller.py /app/self_healing_controller.py
+
+EXPOSE 6653
+
+CMD ["ryu-manager", "--ofp-tcp-listen-port", "6653", "self_healing_controller.py"]
