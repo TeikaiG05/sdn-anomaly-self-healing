@@ -160,7 +160,7 @@
                     "kind": "DataQuery",
                     "spec": {
                       "editorMode": "code",
-                      "expr": "sdn_loss_pct",
+                      "expr": "sdn_throughput_mbps",
                       "legendFormat": "__auto",
                       "range": true
                     },
