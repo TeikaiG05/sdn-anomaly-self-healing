@@ -1,14 +1,8 @@
+# -*- coding: utf-8 -*-
+
 import csv
 from datetime import datetime
-
-def detect(delay_ms, loss_pct, throughput_mbps):
-    if loss_pct > 5:
-        return "ANOMALY"
-    if delay_ms > 50:
-        return "WARNING"
-    if throughput_mbps < 2:
-        return "WARNING"
-    return "NORMAL"
+import sdn_config
 
 samples = [
     {
@@ -25,7 +19,7 @@ samples = [
     }
 ]
 
-with open("result.csv", "w") as f:
+with open("result.csv", "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerow([
         "time",
@@ -37,7 +31,7 @@ with open("result.csv", "w") as f:
     ])
 
     for s in samples:
-        status = detect(
+        status = sdn_config.detect_status(
             s["delay_ms"],
             s["loss_pct"],
             s["throughput_mbps"]

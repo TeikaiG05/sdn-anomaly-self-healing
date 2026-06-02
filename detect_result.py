@@ -1,12 +1,6 @@
-def detect(delay_ms, loss_pct, throughput_mbps):
-    if loss_pct > 5:
-        return "ANOMALY"
-    if delay_ms > 50:
-        return "WARNING"
-    if throughput_mbps < 2:
-        return "WARNING"
-    return "NORMAL"
+# -*- coding: utf-8 -*-
 
+import sdn_config
 
 samples = [
     {
@@ -30,7 +24,7 @@ samples = [
 ]
 
 for s in samples:
-    status = detect(
+    status = sdn_config.detect_status(
         s["delay_ms"],
         s["loss_pct"],
         s["throughput_mbps"]

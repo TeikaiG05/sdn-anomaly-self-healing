@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
 RUN pip install ryu eventlet==0.30.2
 
 COPY self_healing_controller.py /app/self_healing_controller.py
+COPY sdn_config.py /app/sdn_config.py
 
 EXPOSE 6653
 
