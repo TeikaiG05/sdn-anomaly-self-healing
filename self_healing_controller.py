@@ -21,7 +21,7 @@ class SelfHealingStatsController(ControllerBase):
 
     @route('sdn', '/sdn/stats', methods=['GET'])
     def get_stats(self, req, **kwargs):
-        body = json.dumps(self.ryu_app.metrics)
+        body = json.dumps(self.ryu_app.metrics).encode('utf-8')
         return Response(content_type='application/json', body=body)
 
     @route('sdn', '/sdn/set_metrics', methods=['POST'])
