@@ -51,7 +51,7 @@ def measure_ping(h1_pid, target_ip):
         loss_pct = float(loss_match.group(1)) if loss_match else 100.0
         return 500.0, loss_pct
     except Exception as e:
-        print(f"Lỗi thực hiện ping: {e}")
+        print(f"Loi thuc hien ping: {e}")
         return 25.0, 0.0
 
 def send_metrics_to_ryu(delay, loss, throughput):
@@ -83,8 +83,8 @@ if __name__ == "__main__":
         print("Lỗi: Không tìm thấy host h1. Hãy chắc chắn Mininet đang chạy trước khi chạy script này!")
         sys.exit(1)
         
-    print(f"Đã liên kết thành công với host h1 (PID: {h1_pid})")
-    print("Bắt đầu vòng lặp đo đạc thời gian thực (Mỗi 3 giây)...")
+    print(f"Lien ket thanh cong h1 (PID: {h1_pid})")
+    print("Bat dau do")
     print("--------------------------------------------------")
     
     last_bytes = get_interface_bytes("s1-eth3")
@@ -113,13 +113,13 @@ if __name__ == "__main__":
         last_time = curr_time
         
         # Hiển thị thông số đo được
-        print(f"Đo được: Trễ = {delay:.2f}ms | Mất gói = {loss:.1f}% | Băng thông = {throughput_mbps:.2f} Mbps")
+        print(f"Do duoc: Tre = {delay:.2f}ms | Mat goi = {loss:.1f}% | Bang thong = {throughput_mbps:.2f} Mbps")
         
         # 3. Gửi lên Ryu Controller để đưa ra quyết định
         success = send_metrics_to_ryu(delay, loss, throughput_mbps)
         if success:
-            print(" -> Đã cập nhật chỉ số lên Ryu Controller thành công.")
+            print(" -> Cap nhat chi so thanh cong")
         else:
-            print(" -> Cập nhật thất bại (Ryu API chưa hoạt động).")
+            print(" -> Cap nhat that bai")
             
         time.sleep(3)
