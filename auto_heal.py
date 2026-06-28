@@ -6,26 +6,7 @@ import urllib.request
 import sdn_config
 
 # Danh sách kịch bản để chạy giả lập
-samples = [
-    {
-        "scenario": "1. normal_main_path (Mạng bình thường - Đường dẫn chính)",
-        "delay_ms": 25.159,
-        "loss_pct": 0.0,
-        "throughput_mbps": 9.54
-    },
-    {
-        "scenario": "2. udp_congestion (Nghẽn mạng - Kích hoạt Reroute)",
-        "delay_ms": 347.558,
-        "loss_pct": 20.0,
-        "throughput_mbps": 7.01
-    },
-    {
-        "scenario": "3. after_self_healing (Phục hồi - Kích hoạt Failback/Restore)",
-        "delay_ms": 24.871,
-        "loss_pct": 0.0,
-        "throughput_mbps": 19.1
-    }
-]
+samples = [ { "scenario": "1. Mang binh thuong", "delay_ms": 25.159, "loss_pct": 0.50, "throughput_mbps": 9.54 }, { "scenario": "2. Nghen mang - Kich hoat Reroute", "delay_ms": 347.558, "loss_pct": 41.50, "throughput_mbps": 9.36 }, { "scenario": "3. Dang chay tren tuyen du phong", "delay_ms": 24.871, "loss_pct": 6.25, "throughput_mbps": 15.00 }, { "scenario": "4. Mang on dinh - Kich hoat Failback", "delay_ms": 25.300, "loss_pct": 0.40, "throughput_mbps": 9.50 } ]
 
 # URL API để đẩy metrics
 RYU_DOCKER_URL = "http://sdn-ryu:8080/sdn/set_metrics"
